@@ -39,7 +39,7 @@ $(function() {
                 <th class="text-center">Delete</th>
             </tr>
         </thead>
-        <tbody ng-repeat="claim in claims | dateRangeFilter: startDate : endDate">
+        <tbody ng-repeat="claim in claims">
             <td class="text-left">
                 Claim Number : <span ng-model="id"> {{ claim.FarmersClaimType.ClaimNumber }} </span>
                 Claimant First Name: {{ claim.FarmersClaimType.ClaimantFirstName }} 
