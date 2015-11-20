@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <link href="//bootswatch.com/slate/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+    <script src="app.js"></script>
+    <title>Farmer's Insurance Claims Database</title>
+</head>
+
+<body ng-app="myApp">
+    <div id="farmersTitle">
+        <h1 class="text-center"> Farmer's Insurance Claims Web Portal </h1>
+    </div>
+    <div ng-controller="mainController">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/createClaim"> Create A Claim<span class="sr-only">(current)</span></a></li>
+                        <li><a href="#/viewClaims"> View Claims </a></li>
+                        <li><a href="#/updateClaim"> Update a Claim </a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div ng-view> </div>
+    </div>
+</body>

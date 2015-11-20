@@ -1,0 +1,84 @@
+<script>
+$(function() {
+    $("#from").datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 3,
+        onClose: function(selectedDate) {
+            $("#to").datepicker("option", "minDate", selectedDate);
+        }
+    });
+    $("#to").datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 3,
+        onClose: function(selectedDate) {
+            $("#from").datepicker("option", "maxDate", selectedDate);
+        }
+    });
+});
+</script>
+
+<body ng-app="myApp">
+    <form ng-submit="submit()" ng-controller="mainController">
+        <label for="from">From</label>
+        <input type="text" id="from" name="from" ng-model="startDate">
+        <label for="to">to</label>
+        <input type="text" id="to" name="to" ng-model="endDate">
+        <input type="submit" value="search" class="btn btn-primary btn-xs" id="submitButton">
+    </form>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">Farmer's Claim Type</th>
+                <th class="text-center">Cause of Loss Code</th>
+                <th class="text-center">Status Code</th>
+                <th class="text-center">Loss Info Type</th>
+                <th class="text-center">Vehicle List Type</th>
+                <th class="text-center">Vehicle Info Type</th>
+                <th class="text-center">Delete</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="claim in claims | dateRangeFilter: startDate : endDate">
+            <td class="text-left">
+                Claim Number : <span ng-model="id"> {{ claim.FarmersClaimType.ClaimNumber }} </span>
+                Claimant First Name: {{ claim.FarmersClaimType.ClaimantFirstName }} 
+                Claimant Last Name: {{ claim.FarmersClaimType.ClaimantLastName }} 
+                Status: {{ claim.FarmersClaimType.Status }} 
+                Loss Date: {{ claim.FarmersClaimType.LossDate }} 
+                Assigned Adjuster ID: {{claim.FarmersClaimType.AssignedAdjusterID}}
+            </td>
+            <td class="text-left">
+                Cause of Loss Code: {{ claim.LossInfoType.CauseOfLoss}}
+            </td>
+            <td class="text-left">
+                Status Code: {{ claim.FarmersClaimType.Status }}
+            </td>
+            <td class="text-left">
+                Cause of Loss: {{ claim.LossInfoType.CauseOfLoss }} 
+                Loss Description: {{ claim.LossInfoType.LossDescription }} 
+                Reported Date: {{ claim.LossInfoType.ReportedDate }}
+            </td>
+            <td class="text-left">
+                Vehicle List Type: {{ claim.VehicleListType.VehicleDetails }}
+            </td>
+            <td class="text-left">
+                Model Year: {{ claim.VehicleInfoType.ModelYear }} 
+                Make Description: {{ claim.VehicleInfoType.MakeDescription }} 
+                Model Description: {{ claim.VehicleInfoType.ModelDescription }} 
+                Engine Description: {{ claim.VehicleInfoType.EngineDescription }} 
+                Exterior Color: {{ claim.VehicleInfoType.ExteriorColor }} 
+                Vin: {{ claim.VehicleInfoType.Vin }} 
+                License Plate: {{ claim.VehicleInfoType.LicPlate }} 
+                License Plate Expiration Date: {{ claim.VehicleInfoType.LicPlateExpDate }} 
+                Damage Description: {{ claim.VehicleInfoType.DamageDescription }} 
+                Mileage: {{ claim.VehicleInfoType.Mileage }}
+            </td>
+            <td>
+                <input type="submit" value="delete" class="btn btn-primary" id="submitButton" ng-click="delete(claim.FarmersClaimType.ClaimNumber)">
+            </td>
+        </tbody>
+    </table>
+</body>
+
+</html>
